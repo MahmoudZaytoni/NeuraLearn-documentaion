@@ -1,0 +1,339 @@
+\chapter{Modeling} 
+
+\section{Background}
+
+\subsection{Model architecture} 
+
+The Transformer architecture, introduced by Vaswani et al. in 2017, has become a pivotal model in natural language processing tasks.
+
+\hfill \break
+\textbf{Encoder:} \\
+The Encoder processes an input sequence using multi-head self-attention and position-wise feed-forward networks.
+
+
+\begin{itemize}
+    \item \textbf{Multi-Head Self-Attention:} This mechanism allows each word in the input sequence to attend to all other words simultaneously, capturing dependencies and relationships effectively.
+    
+    \item \textbf{Position-wise Feed-Forward Networks:} After attention computation, a position-wise fully connected feed-forward network is applied independently to each position.
+\end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.3]{figures/transformer.png}
+	\caption{Transformer Architecture}
+\end{figure}
+
+\hfill \break
+\textbf{Decoder:}  \\
+The Decoder generates an output sequence by attending to the Encoder's output and performing masked self-attention and cross-attention over the input sequence.
+
+
+\begin{itemize}
+    \item \textbf{Masked Multi-Head Self-Attention:} During training, masking is applied to prevent future positions from being used, allowing each word to attend only to previous positions.
+    
+    \item \textbf{Multi-Head Cross-Attention:} This sub-layer attends to the encoded input sequence, helping the decoder focus on relevant parts of the input sequence when generating each word in the output sequence.
+    
+    \item \textbf{Position-wise Feed-Forward Networks:} A position-wise fully connected feed-forward network is applied to each position after attention computation.
+\end{itemize}
+
+
+\hfill \break
+\textbf{Key Innovations:}
+
+\begin{itemize}
+    \item \textbf{Self-Attention Mechanism:} Enables capturing dependencies across the entire input sequence.
+    
+    \item \textbf{Positional Encoding:} Provides information about the order of tokens in input sequences.
+    
+    \item \textbf{Residual Connections and Layer Normalization:} Address vanishing gradient problem and improve convergence speed in deep models.
+\end{itemize}
+
+\newpage
+
+
+\subsection{LLMs}
+
+\hfill \break
+\textbf{Large Language Models (LLMs)} \\
+
+LLMs such as GPT (Generative Pre-trained Transformer) are pivotal in natural language processing. These models are trained on large-scale datasets using unsupervised learning techniques before fine-tuning on specific tasks.
+
+\hfill \break
+\textbf{Training Process:} \\
+
+LLMs are typically pre-trained using a variant of the Transformer architecture. The training process involves:
+
+\begin{itemize}
+    \item \textbf{Pre-training on Large Corpora:} LLMs are trained on vast amounts of text data to learn general language patterns and representations. This phase helps the model capture semantic relationships and syntactic structures.
+    
+    \item \textbf{Objective Functions:} During pre-training, objectives like language modeling (predicting the next word in a sequence) and masked language modeling (predicting masked-out words) are used to teach the model about language coherence and context understanding.
+    
+    \item \textbf{Fine-tuning:} After pre-training, LLMs can be fine-tuned on smaller, task-specific datasets to adapt to specific applications such as question answering, summarization, or language translation.
+\end{itemize}
+
+\hfill \break
+\textbf{Key Details:} \\
+
+LLMs leverage the Transformer's self-attention mechanism, allowing them to process and generate text while considering global dependencies efficiently. Key aspects include:
+
+\begin{itemize}
+    \item \textbf{Self-Attention:} Enables the model to weigh the significance of each word in the context of the entire input sequence.
+    
+    \item \textbf{Positional Encodings:} Provides information about the order of tokens in input sequences, compensating for the lack of sequential information in the Transformer's architecture.
+    
+    \item \textbf{Fine-grained Representations:} LLMs produce contextual embeddings that capture intricate linguistic nuances, making them versatile for various natural language processing tasks.
+\end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.5]{figures/llama.png}
+	\caption{Transformer vs LLAMA}
+\end{figure}
+
+\hfill \break
+\textbf{Challenges of Training Large Language Models (LLMs)}
+
+Training Large Language Models (LLMs) such as GPT (Generative Pre-trained Transformer) poses several challenges due to the scale and complexity of the models involved:
+
+\begin{itemize}
+    \item \textbf{Computational Resources:} LLMs require substantial computational resources, including high-performance GPUs or TPUs, to handle the massive amounts of data and computations involved in training.
+    
+    \item \textbf{Data Efficiency:} Despite their size, LLMs still require vast amounts of labeled or unlabeled data for effective training. Acquiring and preprocessing such large datasets can be challenging.
+    
+    \item \textbf{Training Time:} Training LLMs is time-consuming, often taking days or even weeks on powerful hardware. This extended duration can hinder rapid experimentation and model iteration.
+    
+    \item \textbf{Fine-tuning Challenges:} While pre-training is effective, fine-tuning LLMs for specific tasks requires careful tuning of hyperparameters and regularization techniques to prevent overfitting and ensure optimal performance.
+    
+    \item \textbf{Memory and Scalability:} Managing memory usage and ensuring scalability across distributed systems are critical challenges, especially as models grow larger and more complex.
+    
+    \item \textbf{Ethical Considerations:} The sheer size and capability of LLMs raise ethical concerns related to bias, fairness, and the potential misuse of generated content.
+\end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.2]{figures/llm computational resources.jpeg}
+	\caption{challenges of training LLMs }
+\end{figure}
+\newpage
+
+\subsection{Instruction Fine-tuning} 
+
+\hfill \break
+\textbf{What is instruction tuning?} \\
+
+Instruction tuning is a subset of the broader category of fine-tuning techniques used to adapt pre-trained foundation models for downstream tasks. Foundation models can be fine-tuned for a variety of purposes, from style customization to supplementing the core knowledge and vocabulary of the pre-trained model to optimizing performance for a specific use case. Though fine-tuning is not exclusive to any specific domain or artificial intelligence model architecture, it has become an integral part of the LLM lifecycle. For example, Meta’s Llama 2 model family is offered (in multiple sizes) as a base model, as a variant fine-tuned for dialogue (Llama-2-chat) and as a variant fine-tuned for coding (Code Llama).
+
+\hfill 
+
+Instruction tuning is not mutually exclusive with other fine-tuning techniques. For example, chat models often undergo both instruction tuning and reinforcement learning from human feedback (RLHF), a fine-tuning technique that aims to improve abstract qualities like helpfulness and honesty; models fine-tuned for coding often undergo both instruction tuning (to broadly optimize responses for instruction following) and additional fine-tuning on programming-specific data (to augment the model’s knowledge of coding syntax and vocabulary).
+
+
+\hfill \break
+\textbf{Why instruction tune LLMs?} \\
+
+The pre-training process for autoregressive language models—LLMs used for generating text, like Meta’s Llama 2, OpenAI’s GPT, Google’s Gemini or IBM’s Granite—optimizes these LLMs to simply predict the next word(s) in a given sequence until it’s complete.
+
+\hfill 
+
+LLMs are pre-trained using self-supervised learning on a massive corpus of written content. In pre-training, autoregressive models are provided the beginning of a text sample and repeatedly tasked with predicting the next word in the sequence until the end of the excerpt. For each prediction, the actual next word of the original sample sentence serves as “ground truth.” Through optimization algorithms like gradient descent that iteratively adjust model parameters—the varying weights and biases applied to the mathematical operations occurring at each node in a neural network—in a way that brings the model’s predictions closer to the original text, the model “learns” the linguistic patterns in its training data (and, by extension, the “knowledge” conveyed in those linguistic patterns).
+
+\hfill \break
+\textbf{Example of instruction promote} \\
+
+
+\begin{center}
+\begin{lstlisting}
+
+{
+    "input":{
+    "
+    You will assist me in generating MCQ questions along with their Answers and Choices. Please use the next context to guide you generating of MCQ questions  Context: Today is Sunday, March 20. We, sixteen boys and seventeen girls, go to school early, but we have no lessons. Our teacher takes us to the zoo. We are very excited about the trip. We get on a bus, it goes fast and at half past nine we get there. How beautiful the zoo is!
+    "
+    }
+    }
+
+}
+\end{lstlisting}
+\end{center}
+
+
+\subsection{QLORA: Efficient Finetuning of Quantized LLMs} 
+
+\hfill \break
+\textbf{QLORA: Efficient Finetuning of Quantized LLMs}
+
+\hfill \break
+``QLORA: Efficient Finetuning of Quantized LLMs'' is a research paper that focuses on optimizing the fine-tuning process for quantized large language models (LLMs). Here’s a detailed explanation of the key concepts and contributions of QLORA:
+
+
+\hfill \break
+Large Language Models (LLMs) like GPT (Generative Pre-trained Transformer) have achieved significant success in various natural language processing (NLP) tasks. However, these models are computationally intensive and memory-intensive, making them challenging to deploy in resource-constrained environments like mobile devices or edge computing platforms.
+
+\hfill \break
+Quantization is a technique used to address these challenges. It involves reducing the precision of model parameters (e.g., from 32-bit floating point to 8-bit integers) to reduce memory usage and improve inference speed. However, quantization often leads to a drop in performance unless the model is fine-tuned properly.
+
+\hfill \break
+\textbf{Key Challenges Addressed by QLORA}
+
+\hfill \break
+1. \textbf{Efficient Fine-tuning}: Fine-tuning a quantized LLM involves adjusting the model weights to perform well on a specific downstream task while maintaining the benefits of quantization. This process is crucial because quantization can degrade model accuracy if not managed properly.
+
+\hfill \break
+2. \textbf{Optimal Hyperparameter Search}: Finding the right hyperparameters (e.g., learning rate, batch size) for fine-tuning quantized models is non-trivial due to the interaction between quantization and model training dynamics.
+
+\hfill \break
+\textbf{Contributions of QLORA}
+
+QLORA proposes several techniques to improve the efficiency and effectiveness of fine-tuning quantized LLMs:
+
+
+\hfill \break
+1. \textbf{Layer-wise Quantization-aware Optimization}: QLORA introduces a method to optimize the learning rate and weight decay for each layer of the quantized model separately. This approach accounts for the different sensitivities of layers to quantization errors, improving overall performance.
+
+
+\hfill \break
+2. \textbf{Dynamic Range Scaling}: QLORA employs dynamic range scaling during fine-tuning, which adjusts the quantization parameters (such as scale and zero-point) based on the statistics of the input data. This adaptive scaling helps mitigate the impact of quantization on model accuracy.
+
+
+\hfill \break
+3. \textbf{Efficient Search for Hyperparameters}: QLORA incorporates techniques for efficiently searching the hyperparameter space, such as Bayesian optimization or grid search tailored for quantized models. This ensures that the fine-tuning process is both effective and resource-efficient.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.5]{figures/Qlora.jpeg}
+	\caption{ Qlora }
+\end{figure}
+\newpage
+\subsection{RAG: Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks}
+
+
+Retrieval-Augmented Generation (RAG) represents a significant advancement in natural language processing, particularly for knowledge-intensive tasks. This approach integrates both retrieval-based and generation-based models to leverage external knowledge sources effectively. 
+
+The workflow of Retrieval-Augmented Generation typically involves the following steps:
+\begin{itemize}
+    \item \textbf{Retrieval Phase:}
+    \begin{itemize}
+        \item \textit{Query Formation:} The input query or prompt is formulated.
+        \item \textit{Retrieval:} A retrieval model searches through external knowledge sources (like Wikipedia, databases, or custom corpora) to extract relevant passages or documents related to the query.
+    \end{itemize}
+    \item \textbf{Integration Phase:}
+    \begin{itemize}
+        \item \textit{Candidate Selection:} The retrieved documents or passages are filtered to select the most relevant ones based on similarity metrics or other criteria.
+        \item \textit{Context Integration:} The selected documents are integrated into the context of the generation model. This can involve concatenating retrieved text with the original input or dynamically attending to relevant parts during generation.
+    \end{itemize}
+    \item \textbf{Generation Phase:}
+    \begin{itemize}
+        \item \textit{Text Generation:} The integrated context is fed into a generation model (often a transformer-based model) to produce a coherent and contextually relevant output.
+        \item \textit{Fine-Tuning:} The model may be fine-tuned on task-specific data to improve performance on particular NLP tasks, ensuring the generated outputs are accurate and contextually appropriate.
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.3]{figures/Rag.png}
+	\caption{ Retrieval Augmented Generation }
+\end{figure}
+
+\newpage
+
+Retrieval-Augmented Generation is particularly beneficial for knowledge-intensive tasks where accurate and comprehensive knowledge retrieval is crucial. Some notable applications include:
+
+
+
+\begin{itemize}
+    \item \textbf{Question Answering:} Enhancing the ability to answer complex questions by leveraging a broader range of external knowledge.
+    \item \textbf{Dialogue Systems:} Improving the responses of chatbots by integrating real-time information retrieval.
+    \item \textbf{Summarization:} Generating concise summaries enriched with up-to-date information from external sources.
+    \item \textbf{Content Creation:} Facilitating the creation of informative and well-researched content by incorporating diverse perspectives and facts.
+\end{itemize}
+
+
+\hfill \break
+The advantages of Retrieval-Augmented Generation include:
+\begin{itemize}
+    \item \textit{Accuracy:} Integrating external knowledge sources helps in providing more accurate and relevant responses.
+    \item \textit{Coverage:} It expands the scope of information that can be accessed beyond what is inherently encoded in the model.
+    \item \textit{Flexibility:} The approach is flexible and adaptable to different domains and tasks by selecting appropriate retrieval sources.
+\end{itemize}
+
+\newpage
+\hfill \break
+However, there are challenges associated with RAG:
+\begin{itemize}
+    \item \textit{Efficiency:} Retrieval can be computationally expensive, especially with large knowledge bases.
+    \item \textit{Integration Complexity:} Harmonizing retrieved knowledge with the generation model output without losing coherence can be challenging.
+    \item \textit{Evaluation:} Assessing the quality of generated outputs that depend on retrieved knowledge poses evaluation challenges.
+\end{itemize}
+
+To understand the technical architecture of RAG models, consider the following components:
+\begin{itemize}
+    \item \textbf{Retriever Model:}
+    \begin{itemize}
+        \item \textit{Indexing:} The retriever model first indexes a large corpus of documents or knowledge base.
+        \item \textit{Query Encoding:} When a query is input, the retriever encodes it into a dense vector representation.
+        \item \textit{Similarity Search:} The encoded query is compared with the indexed document vectors to retrieve the most relevant documents.
+    \end{itemize}
+
+    \item \textbf{Generator Model:}
+    \begin{itemize}
+        \item \textit{Contextual Embeddings:} The retrieved documents are transformed into contextual embeddings, which are combined with the query embeddings.
+        \item \textit{Attention Mechanisms:} Advanced attention mechanisms allow the generator to attend to relevant parts of the retrieved documents while generating the response.
+        \item \textit{Sequence Generation:} Using transformer-based architectures, the generator produces the output text, conditioned on the combined context of the query and retrieved documents.
+    \end{itemize}
+\end{itemize}
+
+\newpage
+
+An example workflow for a knowledge-intensive task, such as answering a detailed historical question, might involve:
+\begin{itemize}
+    \item \textbf{Input Query:} "What were the key factors that led to the fall of the Roman Empire?"
+    \item \textbf{Retrieval Phase:}
+    \begin{itemize}
+        \item \textit{Query Encoding:} Encode the query using a model like BERT.
+        \item \textit{Similarity Search:} Retrieve relevant passages from a historical database or Wikipedia.
+        \item \textit{Selected Passages:} Identify key documents discussing economic troubles, military losses, and political corruption.
+    \end{itemize}
+    \item \textbf{Integration Phase:}
+    \begin{itemize}
+        \item \textit{Contextual Integration:} Integrate the retrieved passages into the generation context.
+    \end{itemize}
+    \item \textbf{Generation Phase:}
+    \begin{itemize}
+        \item \textit{Response Generation:} Generate a comprehensive answer that weaves together information from the retrieved passages, highlighting economic, military, and political factors.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Scalability:} Developing more efficient retrieval algorithms and data structures to handle ever-larger knowledge bases.
+    \item \textbf{Personalization:} Tailoring retrieval and generation processes to individual user preferences and contexts.
+    \item \textbf{Multimodal Retrieval:} Extending RAG to handle multimodal data, incorporating text, images, and other media types.
+    \item \textbf{Evaluation Metrics:} Creating better evaluation metrics to assess the factual accuracy, relevance, and coherence of generated content.
+\end{itemize}
+
+\newpage
+Practical applications and case studies of RAG include:
+\begin{itemize}
+    \item \textbf{Chat-bot support:}
+    \begin{itemize}
+        \item \textit{Scenario:} A support chatbot for a tech company.
+        \item \textit{Implementation:} Integrate a knowledge base of product manuals and troubleshooting guides. Use RAG to retrieve relevant sections and generate tailored responses to customer queries.
+    \end{itemize}
+    \item \textbf{Educational Tools:}
+    \begin{itemize}
+        \item \textit{Scenario:} An interactive learning platform for history students.
+        \item \textit{Implementation:} Access a large repository of historical texts. RAG retrieves pertinent excerpts and generates explanatory content or answers to student questions.
+    \end{itemize}
+    
+\end{itemize}
+
+
+
+\newpage
+
+\section{Training}
+\subsection{Question Generation}
+\subsection{Text Summation}
+
+\section{Results}
+
+
