@@ -70,50 +70,16 @@ To effectively generate and manage quiz questions, a well-defined schema is esse
 
 Here is the schema definition in JSON format:
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.85]{figures/schema definition in JSON format.png}
+	\caption{ Schema of data in json format }
+\end{figure}
 
-\begin{verbatim}
-{
-    "Context": {
-      "type": "string",
-      "description": "The reference or source from which the question is derived. Must cover diverse topics.",
-      "example": "Introduction to TypeScript"
-    },
-    "Level": {
-      "type": "string",
-      "enum": ["easy", "medium", "hard"],
-      "description": "Indicates the difficulty level of the question.",
-      "example": "medium"
-    },
-    "Type": {
-      "type": "string",
-      "enum": ["MCQ", "Bool", "Open"],
-      "description": "Specifies the format of the question.",
-      "example": "MCQ"
-    },
-    "Question": {
-      "type": "string",
-      "description": "The actual question text.",
-      "example": "What is the purpose of the 'let' keyword in JavaScript?"
-    },
-    "Choices": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "Possible answers for Multiple Choice Questions (MCQs).",
-      "example": ["To declare a block-scoped variable", "To declare a function", "To declare a constant", "To declare a global variable"],
-      "required": false
-    },
-    "Answer": {
-      "type": "string",
-      "description": "The correct answer to the question.",
-      "example": "To declare a block-scoped variable"
-    }
-  }
-}
-\end{verbatim}
 
-\section*{Example Entries}
+\begin{center}
+
+\subsection*{Example Entries}
 
 \subsection*{Multiple Choice Question (MCQ)}
 
@@ -121,7 +87,7 @@ Here is the schema definition in JSON format:
 {
   "Context": "This is the Human Papilloma Virus, which causes a viral STI. Viral STIs can be especially dangerous, as they cannot be cured. Once you get one, it's yours for life. And also, it's the person's you give it to.",
   "Type": "MCQ",
-  "Question": "What makes viral stis more dangerous than other types?,
+  "Question": "What makes viral stis more dangerous than other types?",
   "Choices": [
     "A. Jim.",
     "B. Steven.",
@@ -143,17 +109,19 @@ Here is the schema definition in JSON format:
 }
 \end{verbatim}
 
-
 \subsection*{Written Question}
 
 \begin{verbatim}
 {
-  "Context": "Dan Dierdorf, 1974 to 1978 seasons: From 1974 to 1976, Dierdorf started every game at right tackle for the Cardinals during a three-year span in which the team compiled records of 10-4, 11-3, and 10-4 under head coach Don Coryell. In 1977, Dierdorf sustained a broken jaw and missed two games to injury as the Cardinals fell to 7-7. ",
+  "Context": "Dan Dierdorf, 1974 to 1978 seasons: From 1974 to 1976, Dierdorf started every game at right tackle for the Cardinals during a three-year span in which the team compiled records of 10-4, 11-3, and 10-4 under head coach Don Coryell. In 1977, Dierdorf sustained a broken jaw and missed two games to injury as the Cardinals fell to 7-7.",
   "Type": "open",
   "Question": "What position did he play?",
   "Answer": "Dierdorf started every game at right tackle."
 }
 \end{verbatim}
+
+\end{center}
+
 
 \newpage
 

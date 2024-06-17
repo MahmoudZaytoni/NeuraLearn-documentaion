@@ -326,14 +326,129 @@ Practical applications and case studies of RAG include:
     
 \end{itemize}
 
+\newpage
+
+\section{Training and Evaluation}
+\subsection{Question Generation}
+
+There was a several implementation for question generation model
+I will present the final model and do comparison of variance architecture and number of parameter in evaluation section.
+
+\hfill \break
+\textbf{Training Arguments:}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.6]{figures/qg_argrs.png}
+	\caption{ Question Generation Training Arguments }
+\end{figure}
+
+\newpage
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.6]{figures/qg_info.jpeg}
+	\caption{ Number of parameter  }
+\end{figure}
+
+
+\hfill \break
+\textbf{Training loss vs steps :}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{figures/qg_train_loss.jpeg}
+	\caption{ Question Generation Training Loss vs Steps }
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{figures/grad_norm.jpeg}
+	\caption{ Question Generation Training grad norm vs Steps }
+\end{figure}
+\newpage
+
+\hfill \break
+\textbf{Metrics evaluation:} 
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|>{\raggedright\arraybackslash}p{5cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>
+    {\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|}
+        \hline
+        \textbf{Model} & \textbf{Adapter Rank} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{ROUGE-L} & \textbf{ROUGE-Lsum} \\
+        \hline
+        LLaMA-3 8B & 32 & 0.4024 & 0.1956 & 0.3381 & 0.3780 \\
+        \hline
+        LLaMA-3 8B & 16 & 0.3637 & 0.1025 & 0.2997 & 0.3546 \\
+        \hline
+        Gemma 2B & 32 & 0.3642 & 0.0998 & 0.3068 & 0.3536 \\
+        \hline
+        Gemma 2B & 16 & 0.3003 & 0.2111 & 0.2368 & 0.3234 \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of ROUGE scores for different models and adapter ranks}
+    \label{tab:rouge_scores}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.5]{figures/Adapter config rank 32.jpeg}
+	\caption{ Adapter config rank 32 }
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.5]{figures/Adapter config rank 16.jpeg}
+	\caption{ Adapter config rank 16 }
+\end{figure}
+
+\newpage
+\subsection{Text summarization }
+
+\hfill \break
+\textbf{Training Arguments:}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.6]{figures/SummarizationTraining Arguments.png}
+	\caption{ Summarizing Training Arguments }
+\end{figure}
 
 
 \newpage
 
-\section{Training}
-\subsection{Question Generation}
-\subsection{Text Summation}
+\hfill \break
+\textbf{Training loss vs steps :}
 
-\section{Results}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.8]{figures/Summarization Training Loss vs Steps.png}
+	\caption{ Summarizing Training Loss vs Steps }
+\end{figure}
+
+\hfill \break
+\textbf{Metrics evaluation:} 
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Metric} & \textbf{Value} \\
+        \hline
+        ROUGE-1 & 32.454 \\
+        \hline
+        ROUGE-2 & 6.223 \\
+        \hline
+        ROUGE-L & 16.204 \\
+        \hline
+        ROUGE-LSUM & 29.977 \\
+        \hline
+        Loss & 3.199 \\
+        \hline
+    \end{tabular}
+    \caption{Performance Metrics on booksum Test Set}
+    \label{tab:performance_metrics}
+\end{table}
 
 
