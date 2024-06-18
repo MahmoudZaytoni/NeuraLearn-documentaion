@@ -4,7 +4,7 @@
 
 \subsection{Model architecture} 
 
-The Transformer architecture, introduced by Vaswani et al. in 2017, has become a pivotal model in natural language processing tasks.
+The Transformer architecture, introduced by Vaswani et al. in 2017 \cite{vaswani2017attention}, has become a pivotal model in natural language processing tasks.
 
 \hfill \break
 \textbf{Encoder:} \\
@@ -54,7 +54,7 @@ The Decoder generates an output sequence by attending to the Encoder's output an
 \subsection{LLMs}
 
 \hfill \break
-\textbf{Large Language Models (LLMs)} \\
+\textbf{ (LLMs)} \\
 
 LLMs such as GPT (Generative Pre-trained Transformer) are pivotal in natural language processing. These models are trained on large-scale datasets using unsupervised learning techniques before fine-tuning on specific tasks.
 
@@ -87,7 +87,7 @@ LLMs leverage the Transformer's self-attention mechanism, allowing them to proce
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.5]{figures/llama.png}
-	\caption{Transformer vs LLAMA}
+	\caption{Transformer vs LLAMA }
 \end{figure}
 
 \hfill \break
@@ -121,49 +121,44 @@ Training Large Language Models (LLMs) such as GPT (Generative Pre-trained Transf
 \hfill \break
 \textbf{What is instruction tuning?} \\
 
+\hfill \break
 Instruction tuning is a subset of the broader category of fine-tuning techniques used to adapt pre-trained foundation models for downstream tasks. Foundation models can be fine-tuned for a variety of purposes, from style customization to supplementing the core knowledge and vocabulary of the pre-trained model to optimizing performance for a specific use case. Though fine-tuning is not exclusive to any specific domain or artificial intelligence model architecture, it has become an integral part of the LLM lifecycle. For example, Meta’s Llama 2 model family is offered (in multiple sizes) as a base model, as a variant fine-tuned for dialogue (Llama-2-chat) and as a variant fine-tuned for coding (Code Llama).
-
-\hfill 
-
-Instruction tuning is not mutually exclusive with other fine-tuning techniques. For example, chat models often undergo both instruction tuning and reinforcement learning from human feedback (RLHF), a fine-tuning technique that aims to improve abstract qualities like helpfulness and honesty; models fine-tuned for coding often undergo both instruction tuning (to broadly optimize responses for instruction following) and additional fine-tuning on programming-specific data (to augment the model’s knowledge of coding syntax and vocabulary).
 
 
 \hfill \break
-\textbf{Why instruction tune LLMs?} \\
+Instruction tuning is not mutually exclusive with other fine-tuning techniques. For example, chat models often undergo both instruction tuning and reinforcement learning from human feedback (RLHF), a fine-tuning technique that aims to improve abstract qualities like helpfulness and honesty; models fine-tuned for coding often undergo both instruction tuning (to broadly optimize responses for instruction following) and additional fine-tuning on programming-specific data (to augment the model’s knowledge of coding syntax and vocabulary).
 
+\hfill \break
+\textbf{Why instruction tune LLMs?} \\
+\hfill \break
 The pre-training process for autoregressive language models—LLMs used for generating text, like Meta’s Llama 2, OpenAI’s GPT, Google’s Gemini or IBM’s Granite—optimizes these LLMs to simply predict the next word(s) in a given sequence until it’s complete.
 
-\hfill 
-
+\hfill \break
 LLMs are pre-trained using self-supervised learning on a massive corpus of written content. In pre-training, autoregressive models are provided the beginning of a text sample and repeatedly tasked with predicting the next word in the sequence until the end of the excerpt. For each prediction, the actual next word of the original sample sentence serves as “ground truth.” Through optimization algorithms like gradient descent that iteratively adjust model parameters—the varying weights and biases applied to the mathematical operations occurring at each node in a neural network—in a way that brings the model’s predictions closer to the original text, the model “learns” the linguistic patterns in its training data (and, by extension, the “knowledge” conveyed in those linguistic patterns).
 
 \hfill \break
 \textbf{Example of instruction promote} \\
 
-
 \begin{center}
-\begin{lstlisting}
-
-{
-    "input":{
-    "
-    You will assist me in generating MCQ questions along with their Answers and Choices. Please use the next context to guide you generating of MCQ questions  Context: Today is Sunday, March 20. We, sixteen boys and seventeen girls, go to school early, but we have no lessons. Our teacher takes us to the zoo. We are very excited about the trip. We get on a bus, it goes fast and at half past nine we get there. How beautiful the zoo is!
-    "
-    }
-    }
-
-}
-\end{lstlisting}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5,width=20.75cm,height=10cm, center]{figures/instruction dataset.png}
+\caption{ Example of instruction promote }
+\end{figure}
 \end{center}
 
+\hfill \break
+Here is the link to the Dataset repository: \url{https://huggingface.co/datasets/shredder-31/QG_QusestionsData}
 
+
+\newpage
 \subsection{QLORA: Efficient Finetuning of Quantized LLMs} 
 
 \hfill \break
 \textbf{QLORA: Efficient Finetuning of Quantized LLMs}
 
 \hfill \break
-``QLORA: Efficient Finetuning of Quantized LLMs'' is a research paper that focuses on optimizing the fine-tuning process for quantized large language models (LLMs). Here’s a detailed explanation of the key concepts and contributions of QLORA:
+``QLORA: Efficient Finetuning of Quantized LLMs'' \cite{dettmers2024qlora} is a research paper that focuses on optimizing the fine-tuning process for quantized large language models (LLMs). Here’s a detailed explanation of the key concepts and contributions of QLORA:
 
 
 \hfill \break
@@ -207,7 +202,7 @@ QLORA proposes several techniques to improve the efficiency and effectiveness of
 \subsection{RAG: Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks}
 
 
-Retrieval-Augmented Generation (RAG) represents a significant advancement in natural language processing, particularly for knowledge-intensive tasks. This approach integrates both retrieval-based and generation-based models to leverage external knowledge sources effectively. 
+Retrieval-Augmented Generation (RAG) represents a significant advancement in natural language processing \cite{lewis2020retrieval}, particularly for knowledge-intensive tasks. This approach integrates both retrieval-based and generation-based models to leverage external knowledge sources effectively. 
 
 The workflow of Retrieval-Augmented Generation typically involves the following steps:
 \begin{itemize}
@@ -326,6 +321,9 @@ Practical applications and case studies of RAG include:
     
 \end{itemize}
 
+\hfill \break
+Here is the link to the RAG Pipline repository: \url{https://github.com/Sh-31/NeuraLearn-ML-Server-QG-RAG-Pipeline}
+
 \newpage
 
 \section{Training and Evaluation}
@@ -370,6 +368,29 @@ I will present the final model and do comparison of variance architecture and nu
 \hfill \break
 \textbf{Metrics evaluation:} 
 
+\hfill \break
+\textbf{How to evaluation:}
+
+\hfill \break
+Based on "Are Large Language Models Fit For Guided Reading?" Paper \cite{ochieng2023large} looks at the ability of large language models to participate in educational
+guided reading. We specifically, evaluate their ability to generate meaningful
+questions from the input text, generate diverse questions.
+
+It's suggest use ROUGE-L and BERTScore as evaluation metric.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.5]{figures/generate questions from a given text input.jpeg}
+	\caption{ Prompting LLM to generate questions from a given text input  }
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.5]{figures/ROUGE-L.png}
+	\caption{ROUGE-L}
+\end{figure}
+
+\newpage
 \begin{table}[h!]
     \centering
     \begin{tabular}{|>{\raggedright\arraybackslash}p{5cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>
@@ -377,7 +398,7 @@ I will present the final model and do comparison of variance architecture and nu
         \hline
         \textbf{Model} & \textbf{Adapter Rank} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{ROUGE-L} & \textbf{ROUGE-Lsum} \\
         \hline
-        LLaMA-3 8B & 32 & 0.4024 & 0.1956 & 0.3381 & 0.3780 \\
+        LLaMA-3 8B & 32 & 0.4024 & 0.1956 & 0.3790 & 0.3381 \\
         \hline
         LLaMA-3 8B & 16 & 0.3637 & 0.1025 & 0.2997 & 0.3546 \\
         \hline
@@ -390,17 +411,42 @@ I will present the final model and do comparison of variance architecture and nu
     \label{tab:rouge_scores}
 \end{table}
 
+
+\hfill \break
+\textbf{What's a good ROUGE score?:}
+
+\hfill \break
+A good ROUGE score varies by task and metric. ROUGE-1 scores are excellent around 0.5, with scores above 0.5 considered good and 0.4 to 0.5 moderate. For ROUGE-2, scores above 0.4 are good, and 0.2 to 0.4 are moderate.
+
+\hfill \break
+ROUGE-L scores are good around 0.4 and low at 0.3 to 0.4. While ROUGE scores are useful, they don't account for semantic or syntactic quality and should be complemented with other metrics and human evaluation for a complete assessment.
+
+\hfill \break
+
+Important Note: we didn't use any type of beam search algorithm to enhance the result because of competition power resource is limited.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.5]{figures/Adapter config rank 32.jpeg}
+	\includegraphics[scale=0.4]{figures/What's a good ROUGE score.png}
+	\caption{ What's a good ROUGE score? }
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.6]{figures/Adapter config rank 32.jpeg}
 	\caption{ Adapter config rank 32 }
 \end{figure}
 
+
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.5]{figures/Adapter config rank 16.jpeg}
+	\includegraphics[scale=0.6]{figures/Adapter config rank 16.jpeg}
 	\caption{ Adapter config rank 16 }
 \end{figure}
+
+\hfill \break
+Here is the link to the model repository: \url{https://huggingface.co/shredder-31/Llamma-3_QG_V.3.0}
 
 \newpage
 \subsection{Text summarization }
@@ -451,4 +497,5 @@ I will present the final model and do comparison of variance architecture and nu
     \label{tab:performance_metrics}
 \end{table}
 
-
+\hfill \break
+Here is the link to the model repository: \url{https://huggingface.co/shredder-31/Summarization_Model_led_base_book_summary}
