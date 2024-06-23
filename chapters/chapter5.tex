@@ -451,6 +451,9 @@ Here is the link to the model repository: \url{https://huggingface.co/shredder-3
 \newpage
 \subsection{Text summarization }
 
+Our text summarization model is based of \cite{beltagy2020longformer} longformer is a variant of the transformer architecture designed to handle long-range dependencies more effectively than traditional Transformers, which typically have a quadratic dependency on the sequence length due to their self-attention mechanism. 
+
+\hfill \break
 \hfill \break
 \textbf{Training Arguments:}
 
@@ -469,10 +472,20 @@ Here is the link to the model repository: \url{https://huggingface.co/shredder-3
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.8]{figures/Summarization Training Loss vs Steps.png}
+	\includegraphics[scale=0.8]{figures/Summarization Training Loss vs Steps.png.png}
 	\caption{ Summarizing Training Loss vs Steps }
 \end{figure}
 
+\hfill \break
+\textbf{Val loss vs steps :}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.8]{figures/Summarization Val Loss vs Steps.png.png}
+	\caption{ Summarizing Training Loss vs Steps }
+\end{figure}
+
+\newpage
 \hfill \break
 \textbf{Metrics evaluation:} 
 
@@ -482,20 +495,71 @@ Here is the link to the model repository: \url{https://huggingface.co/shredder-3
         \hline
         \textbf{Metric} & \textbf{Value} \\
         \hline
-        ROUGE-1 & 32.454 \\
+        ROUGE-1 & 0.32\\
         \hline
-        ROUGE-2 & 6.223 \\
+        ROUGE-2 & 0.6 \\
         \hline
-        ROUGE-L & 16.204 \\
+        ROUGE-L & 0.16 \\
         \hline
-        ROUGE-LSUM & 29.977 \\
-        \hline
-        Loss & 3.199 \\
+        ROUGE-LSUM & 0.29 \\
         \hline
     \end{tabular}
-    \caption{Performance Metrics on booksum Test Set}
+    \caption{Performance Metrics on booksum benchmark}
+    \label{tab:performance_metrics}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Metric} & \textbf{Value} \\
+        \hline
+        ROUGE-1 & 0.30 \\
+        \hline
+        ROUGE-2 & 0.13 \\
+        \hline
+        ROUGE-L & 0.19 \\
+        \hline
+        ROUGE-LSUM & 0.28 \\
+        \hline
+    \end{tabular}
+    \caption{Performance Metrics on samsum dataset}
+    \label{tab:performance_metrics}
+\end{table}
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Metric} & \textbf{Value} \\
+        \hline
+        ROUGE-1 & 0.36 \\
+        \hline
+        ROUGE-2 & 0.15 \\
+        \hline
+        ROUGE-L & 0.23 \\
+        \hline
+        ROUGE-LSUM & 0.30 \\
+        \hline
+    \end{tabular}
+    \caption{Performance Metrics on billsum dataset}
     \label{tab:performance_metrics}
 \end{table}
 
 \hfill \break
 Here is the link to the model repository: \url{https://huggingface.co/shredder-31/Summarization_Model_led_base_book_summary}
+
+\newpage
+\section{Literature review}
+\begin{figure}[h!]
+\begin{center}
+	\centering
+        \includegraphics[width=1.2\textwidth]{figures/Literature review.png}
+	\caption{Literature review ”Automatic question generation and answer assessment: a survey (2021)”}
+\end{center}
+\end{figure}
+
+
+
+
