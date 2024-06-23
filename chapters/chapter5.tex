@@ -1,7 +1,135 @@
 \chapter{Modeling} 
 
-\section{Background}
+\section{Background and Literature review}
 
+\subsection{Literature review} 
+
+The literature review examines several papers published between 2017-2021 based on Automatic question generation and answer assessment: a survey \cite{das2021automatic} that address different aspects of automatic question generation and answer assessment,   Here's an expanded overview:
+\begin{enumerate}
+\item \textbf{Deena et al. (2020) - "Developing the assessment questions automatically to determine the cognitive level of the E-learner using NLP techniques": \cite{deena2020developing}} 
+This paper proposed a method for generating subjective questions dynamically using Natural Language Processing (NLP) and Bloom's taxonomy. The approach aimed to reduce memory occupation and generate questions that could assess different cognitive levels of e-learners.
+
+\item \textbf{Das et al. (2019) - "Automatic generation of fill-in-the-blank question with corpus-based distractors for e-assessment to enhance learning": \cite{das2019automatic}} 
+This study focused on generating fill-in-the-blank questions automatically. It used corpus-based distractors to enhance the quality of the questions for e-assessment. The method aimed to improve learning by providing more effective automatically generated questions.
+
+
+\item \textbf{Klein and Nabi (2019) - "Learning to Answer by Learning to Ask: Getting the Best of GPT-2 and BERT Worlds": \cite{klein2019learning}} 
+This paper explored the use of advanced language models, specifically GPT-2 and BERT, for question generation and answering. It aimed to combine the strengths of these two models to improve both the quality of generated questions and the accuracy of answers.
+
+\newpage
+\item \textbf{Carmichael et al. (2018) - "Assessing the impact of educational video on student engagement, critical thinking and learning the Current State of Play":
+\cite{carmichael2018assessing}} 
+This paper explored the use of advanced language models, specifically GPT-2 and BERT, for question generation and answering. It aimed to combine the strengths of these two models to improve both the quality of generated questions and the accuracy of answers.
+
+\item \textbf{Du et al. (2017) - "Learning to Ask: Neural Question Generation for Reading Comprehension":\cite{du2017learning}} 
+This paper presented a neural approach to question generation for reading comprehension. It used an encoder-decoder sequence learning framework to generate questions from given input text, aiming to improve the quality and relevance of automatically generated questions.
+
+
+\end{enumerate}
+
+ \textbf{The main challenges All of these architectures are based on the servery:}
+
+\begin{itemize}
+    \item \textbf{Informative-simple-sentence extraction:}
+    \begin{itemize}
+        \item Difficulty in extracting informative sentences that can generate quality questions.
+        \item Complexity in simplifying compound and complex sentences.
+        \item Lack of generic techniques for extracting informative-simple-sentences from text.
+    \end{itemize}
+
+    \item \textbf{Question generation from multiple sentences:}
+    \begin{itemize}
+        \item Challenges in generating questions that require understanding relationships between multiple sentences.
+        \item Need for natural language understanding to grasp the context across sentences.
+    \end{itemize}
+
+    \item \textbf{Short and long-type answer assessment:}
+    \begin{itemize}
+        \item Difficulty in automatically evaluating subjective answers reliably.
+        \item Challenges in assessing the depth of knowledge and critical reasoning in long answers.
+        \item Need for more accurate and practical systems for grading both short and long-type answers.
+    \end{itemize}
+
+    \newpage
+    \item \textbf{Answer assessment standard:}
+    \begin{itemize}
+        \item Lack of a standardized approach to evaluate and compare learners' knowledge.
+        \item Variability in scoring scales and evaluation techniques across different systems.
+    \end{itemize}
+
+    \item \textbf{Question generation and assessment from video lectures:}
+    \begin{itemize}
+        \item Complexity in generating questions from audio-visual content.
+        \item Need for techniques to assess learning from video-based materials.
+    \end{itemize}
+
+    \item \textbf{Question generation and assessment using machine learning:}
+    \begin{itemize}
+        \item Challenges in applying advanced NLP techniques like natural language understanding (NLU) and natural language generation (NLG).
+        \item Need for more research in using deep learning and neural networks for question generation and answer assessment.
+    \end{itemize}
+
+    \item \textbf{Visual Question-Answer Generation:}
+    \begin{itemize}
+        \item Difficulties in generating questions from images and visual content.
+        \item Challenges in understanding and reasoning about visual information.
+    \end{itemize}
+
+    \item \textbf{Automated evaluation of subjective questions:}
+    \begin{itemize}
+        \item Unreliable results in computer-based assessment of subjective questions.
+        \item Difficulty in fully automating the evaluation of writing skills and critical reasoning.
+    \end{itemize}
+\end{itemize}
+ 
+\newpage
+\begin{figure}[h!]
+\begin{center}
+	\centering
+        \includegraphics[max height =\textwidth,
+        max width=\textwidth]{figures/Literature review.png}
+	\caption{Literature review }
+\end{center}
+\end{figure}
+
+
+\hfill \break
+ \textbf{Advantages of our proposed model:}
+\begin{itemize}
+    \item \textbf{Question generation and assessment from video lectures:}
+    \begin{itemize}
+        \item By using video transcripts for question generation and assessment from video lectures.
+    \end{itemize}
+
+     \item \textbf{Answer assessment standard.}
+    \begin{itemize}
+        \item By using An instruction fine-tuning technique.
+    \end{itemize}
+        
+    \item \textbf{Question generation three types of questions (MCQ-True/False-Written).}
+
+
+    \item \textbf{Short and long-type answer assessment.}
+
+    \item \textbf{Question generation from multiple sentences.}
+    
+    \item \textbf{More generalize (can generate meaningful questions from a different domain).}
+    
+  \end{itemize}    
+
+
+\hfill \break
+ \textbf{Disadvantages of our proposed model:}
+\begin{itemize}
+
+    \item \textbf{Token generating Latency.}
+
+    \item \textbf{Model generation affected by the quality of the transcript.}
+
+  \end{itemize}    
+
+
+\newpage
 \subsection{Model architecture} 
 
 The Transformer architecture, introduced by Vaswani et al. in 2017 \cite{vaswani2017attention}, has become a pivotal model in natural language processing tasks.
@@ -482,7 +610,7 @@ Our text summarization model is based of \cite{beltagy2020longformer} longformer
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.8]{figures/Summarization Val Loss vs Steps.png.png}
-	\caption{ Summarizing Training Loss vs Steps }
+	\caption{ Summarizing Validation Loss vs Steps }
 \end{figure}
 
 \newpage
@@ -549,17 +677,3 @@ Our text summarization model is based of \cite{beltagy2020longformer} longformer
 
 \hfill \break
 Here is the link to the model repository: \url{https://huggingface.co/shredder-31/Summarization_Model_led_base_book_summary}
-
-\newpage
-\section{Literature review}
-\begin{figure}[h!]
-\begin{center}
-	\centering
-        \includegraphics[width=1.2\textwidth]{figures/Literature review.png}
-	\caption{Literature review ”Automatic question generation and answer assessment: a survey (2021)”}
-\end{center}
-\end{figure}
-
-
-
-
