@@ -13,32 +13,8 @@
 \setcode{utf8}
 % \renewcommand{\baselinestretch}{2.5}
 
-\titleformat{\chapter}[display]
-	{\bfseries\centering
-		\fontsize{18}{21}\selectfont} % Formatting of the chapter title
-	{\MakeUppercase\chaptertitlename\ \thechapter} % Uppercase the chapter name and number
-	{15pt} % Space between chapter number and title
-	{\MakeUppercase} % Uppercase the chapter title
+
 % Set the depth of the table of contents
 \sidecaptionvpos{figure}{c}
-
-\lstset{ 
-  language=Python, 
-  basicstyle=\ttfamily\footnotesize,
-  keywordstyle=\color{blue},
-  commentstyle=\color{green},
-  stringstyle=\color{red},
-  frame=single,
-  breaklines=true,
-  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
-  numbers=left,
-  numberstyle=\tiny\color{gray},
-  stepnumber=1,
-  numbersep=5pt,
-  showspaces=false,
-  showstringspaces=false,
-  tabsize=4,
-  captionpos=b,
-}
 
 \setcounter{tocdepth}{2}
